@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-ui-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react-ui
+  template:
+    metadata:
+      labels:
+        app: react-ui
+    spec:
+      containers:
+        - name: react-ui
+          image: bakirjacoub/spring-boot-react-ecommerce-app-master-react-ui
+          stdin: true
+          tty: true
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REACT_APP_STRIPE_PUBLISH_KEY
+              value: "pk_test_51H805Oa3n3j3JVXUotWOsdf223PXI2ZehJ0s4QSQK0WjEJer78w87wer8h2u3bo32sTVcxyh5bDuulBildNrp"
+            - name: REACT_APP_COMMON_DATA_SERVICE_PORT
+              value: "9005"
+            - name: REACT_APP_ENVIRONMENT
+              value: "dev"

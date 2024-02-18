@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: common-data-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: common-data-service
+  template:
+    metadata:
+      labels:
+        app: common-data-service
+    spec:
+      containers:
+        - name: common-data-service
+          image: bakirjacoub/spring-boot-react-ecommerce-app-master-common-data-service:latest
+          env:
+            - name: DB_HOST
+              value: "mysql-db"
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_USER
+              value: "mysqluser"
+            - name: DB_PASS
+              value: "mypass"
+            - name: DB_SCHEMA
+              value: "ecommerce_app_database"
+            - name: ACTIVE_PROFILE
+              value: "dev"
+            - name: PORT
+              value: "9005"
+            - name: REDIS_PASSWORD
+              value: "mypass"
+            - name: REDIS_HOST
+              value: "redis-cache"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REACT_CLIENT_URL
+              value: "http://localhost:3000"

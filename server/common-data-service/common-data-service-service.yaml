@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: common-data-service-service
+spec:
+  selector:
+    app: common-data-service
+  ports:
+    - protocol: TCP
+      port: 9005
+      targetPort: 9005
+  type: ClusterIP

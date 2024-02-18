@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: search-suggestion-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: search-suggestion-service
+  template:
+    metadata:
+      labels:
+        app: search-suggestion-service
+    spec:
+      containers:
+        - name: search-suggestion-service
+          image: bakirjacoub/spring-boot-react-ecommerce-app-master-search-suggestion-service:latest
+          env:
+            - name: ACTIVE_PROFILE
+              value: "dev"
+            - name: PORT
+              value: "10000"
+            - name: COMMON_DATA_SERVICE_URL
+              value: "http://common-data-service:9005"

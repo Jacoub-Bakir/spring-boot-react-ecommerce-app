@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: search-suggestion-service-service
+spec:
+  selector:
+    app: search-suggestion-service
+  ports:
+    - protocol: TCP
+      port: 10000
+      targetPort: 10000
+  type: ClusterIP
